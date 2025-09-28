@@ -235,6 +235,8 @@ The Hugging Face Transformers code for Qwen3-Omni has been successfully merged, 
 
 ```bash
 # If you already have transformers installed, please uninstall it first, or create a new Python environment
+# Huggingface-hub==1.0.0rc1 is the "Pre Release" version, so you should install it directly from Pypi.
+pip install --no-cache-dir --index-url https://pypi.org/simple huggingface-hub==1.0.0rc1
 # pip uninstall transformers
 pip install git+https://github.com/huggingface/transformers
 pip install accelerate
@@ -489,6 +491,9 @@ Additionally, for more usage details such as prompt settings, task-specific usag
 We strongly recommend using vLLM for inference and deployment of the Qwen3-Omni series models. Since our code is currently in the pull request stage, and **audio output inference support for the Instruct model will be released in the near future**, you can follow the commands below to install vLLM from source. Please note that we recommend you **create a new Python environment** or use our provided [Docker](#-docker) to avoid runtime environment conflicts and incompatibilities. For more details on compiling vLLM from source, please refer to the [vLLM official documentation](https://docs.vllm.ai/en/latest/getting_started/installation/gpu.html#set-up-using-python-only-build-without-compilation).
 
 ```bash
+# Huggingface-hub==1.0.0rc1 is the "Pre Release" version, so you should install it directly from Pypi.
+pip install --no-cache-dir --index-url https://pypi.org/simple huggingface-hub==1.0.0rc1
+
 git clone -b qwen3_omni https://github.com/wangxiongts/vllm.git
 cd vllm
 pip install -r requirements/build.txt
