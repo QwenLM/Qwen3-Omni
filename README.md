@@ -236,7 +236,7 @@ The Hugging Face Transformers code for Qwen3-Omni has been successfully merged, 
 ```bash
 # If you already have transformers installed, please uninstall it first, or create a new Python environment
 # pip uninstall transformers
-pip install git+https://github.com/huggingface/transformers
+pip install transformers==4.57
 pip install accelerate
 ```
 
@@ -489,18 +489,15 @@ Additionally, for more usage details such as prompt settings, task-specific usag
 We strongly recommend using vLLM for inference and deployment of the Qwen3-Omni series models. Since our code is currently in the pull request stage, and **audio output inference support for the Instruct model will be released in the near future**, you can follow the commands below to install vLLM from source. Please note that we recommend you **create a new Python environment** or use our provided [Docker](#-docker) to avoid runtime environment conflicts and incompatibilities. For more details on compiling vLLM from source, please refer to the [vLLM official documentation](https://docs.vllm.ai/en/latest/getting_started/installation/gpu.html#set-up-using-python-only-build-without-compilation).
 
 ```bash
-git clone -b qwen3_omni https://github.com/wangxiongts/vllm.git
+git clone https://github.com/vllm-project/vllm.git
 cd vllm
-pip install -r requirements/build.txt
-pip install -r requirements/cuda.txt
-export VLLM_PRECOMPILED_WHEEL_LOCATION=https://wheels.vllm.ai/a5dd03c1ebc5e4f56f3c9d3dc0436e9c582c978f/vllm-0.9.2-cp38-abi3-manylinux1_x86_64.whl
-VLLM_USE_PRECOMPILED=1 pip install -e . -v --no-build-isolation
-# If you meet an "Undefined symbol" error while using VLLM_USE_PRECOMPILED=1, please use "pip install -e . -v" to build from source.
-# Install the Transformers
-pip install git+https://github.com/huggingface/transformers
-pip install accelerate
+python3 -m venv venv
+source .venv/bin/activate
+VLLM_USE_PRECOMPILED=1 pip install -e .
+# If you want to build from scratch on a specific commit, then skip VLLM_USE_PRECOMPILED and just do:
+#   pip install -e .
 pip install qwen-omni-utils -U
-pip install -U flash-attn --no-build-isolation
+pip install vllm[audio]
 ```
 
 #### Inference
