@@ -449,7 +449,8 @@ model = Qwen3OmniMoeForConditionalGeneration.from_pretrained(
     attn_implementation="flash_attention_2",
 )
 ...
-text_ids, _ = model.generate(..., return_audio=False)```
+text_ids, _ = model.generate(..., return_audio=False)
+```
 
 </details>
 
