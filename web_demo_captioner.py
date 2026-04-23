@@ -57,6 +57,9 @@ def _launch_demo(args, model, processor):
 
         if use_transformers:
             text = processor.apply_chat_template(messages, add_generation_prompt=True, tokenize=False)
+            # use a prefix, such as a Chinese prompt, to support Chinese output
+            # text = processor. apply_chat_template(messages, add_generation_prompt=False, tokenize=False)
+            # text = text + "<|im_start|>assistant\n这个音频剪辑"
 
             audios, _, _ = process_mm_info(messages, use_audio_in_video=True)
 
